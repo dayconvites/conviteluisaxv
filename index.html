@@ -1,38 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Convite Luisa XV</title>
-
   <style>
+    * { box-sizing: border-box; }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       width: 100%;
       min-height: 100%;
-      background: #001b4d;
+      background: #132540;
     }
 
-    body {
-      overflow-x: hidden;
-    }
-
-    /* ================================
-       ENVELOPE
-       ================================ */
+    body { overflow-x: hidden; }
 
     .envelope {
       position: relative;
@@ -40,48 +23,29 @@
       max-width: 700px;
       margin: 0 auto;
       line-height: 0;
-
-      /* animação */
-      transition:
-        transform 0.8s ease,
-        opacity 0.8s ease,
-        filter 0.8s ease;
+      transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
     }
 
     .envelope img {
       display: block;
       width: 100%;
       height: auto;
+      margin: 0;
+      padding: 0;
     }
-
-
-    /* ================================
-       ÁREA CLICÁVEL DO SELO
-       ================================ */
 
     .abrir {
       position: absolute;
-
       left: 31%;
       top: 39%;
-
       width: 38%;
       height: 23%;
-
       display: block;
       z-index: 10;
-
       border-radius: 50%;
-
       cursor: pointer;
-
       -webkit-tap-highlight-color: transparent;
     }
-
-
-    /* ================================
-       ANIMAÇÃO DE SAÍDA
-       ================================ */
 
     .envelope.abrindo {
       transform: scale(1.08);
@@ -89,116 +53,45 @@
       filter: blur(3px);
     }
 
-
-    /* ================================
-       FUNDO DE TRANSIÇÃO
-       ================================ */
-
     .transicao {
       position: fixed;
       inset: 0;
-
       background: #ffffff;
-
       opacity: 0;
       pointer-events: none;
-
-      transition: opacity 0.8s ease;
-
+      transition: opacity 0.4s ease;
       z-index: 100;
     }
 
-    .transicao.ativa {
-      opacity: 1;
-    }
-
-
-    /* Para pessoas que preferem
-       menos animações no dispositivo */
+    .transicao.ativa { opacity: 1; }
 
     @media (prefers-reduced-motion: reduce) {
-
-      .envelope,
-      .transicao {
-        transition: none;
-      }
-
+      .envelope, .transicao { transition: none; }
     }
-
   </style>
-
 </head>
-
-
 <body>
-
-
-  <!-- ENVELOPE -->
-
   <main class="envelope" id="envelope">
-
-    <img
-      src="ENVELOPE.png"
-      alt="Envelope do convite de 15 anos da Luisa"
-    >
-
-    <a
-      class="abrir"
-      href="convite/"
-      id="abrirConvite"
-      aria-label="Abrir convite"
-    ></a>
-
+    <img src="ENVELOPE.png" alt="Envelope do convite de 15 anos da Luisa">
+    <a class="abrir" href="convite/" id="abrirConvite" aria-label="Abrir convite"></a>
   </main>
 
-
-  <!-- CAMADA DA TRANSIÇÃO -->
-
-  <div
-    class="transicao"
-    id="transicao"
-  ></div>
-
+  <div class="transicao" id="transicao"></div>
 
   <script>
-
     const botao = document.getElementById("abrirConvite");
     const envelope = document.getElementById("envelope");
     const transicao = document.getElementById("transicao");
 
-
     botao.addEventListener("click", function(event) {
-
-      /*
-       Impede que o link abra imediatamente.
-       Primeiro fazemos a animação.
-      */
-
       event.preventDefault();
-
-
-      /* Inicia a animação */
-
       envelope.classList.add("abrindo");
       transicao.classList.add("ativa");
 
-
-      /*
-       Espera 800 milissegundos
-       e depois abre o convite
-      */
-
       setTimeout(function() {
-
         window.location.href = "convite/";
-
-      }, 800);
-
+      }, 400);
     });
-
   </script>
-
-
 </body>
-
 </html>
