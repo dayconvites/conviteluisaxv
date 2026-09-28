@@ -26,17 +26,26 @@
       background: #001b4d;
     }
 
+    body {
+      overflow-x: hidden;
+    }
+
+    /* ================================
+       ENVELOPE
+       ================================ */
+
     .envelope {
       position: relative;
-
-      /* Preenche a largura no celular */
       width: 100%;
-
-      /* Evita ficar exageradamente grande no computador */
       max-width: 700px;
-
       margin: 0 auto;
       line-height: 0;
+
+      /* animação */
+      transition:
+        transform 0.8s ease,
+        opacity 0.8s ease,
+        filter 0.8s ease;
     }
 
     .envelope img {
@@ -45,10 +54,11 @@
       height: auto;
     }
 
-    /*
-       Área clicável sobre o selo e
-       "CLIQUE AQUI PARA ABRIR"
-    */
+
+    /* ================================
+       ÁREA CLICÁVEL DO SELO
+       ================================ */
+
     .abrir {
       position: absolute;
 
@@ -68,35 +78,126 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /*
-       Pequeno efeito ao tocar/clicar
-    */
-    .abrir:active {
-      transform: scale(0.97);
+
+    /* ================================
+       ANIMAÇÃO DE SAÍDA
+       ================================ */
+
+    .envelope.abrindo {
+      transform: scale(1.08);
+      opacity: 0;
+      filter: blur(3px);
+    }
+
+
+    /* ================================
+       FUNDO DE TRANSIÇÃO
+       ================================ */
+
+    .transicao {
+      position: fixed;
+      inset: 0;
+
+      background: #ffffff;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transition: opacity 0.8s ease;
+
+      z-index: 100;
+    }
+
+    .transicao.ativa {
+      opacity: 1;
+    }
+
+
+    /* Para pessoas que preferem
+       menos animações no dispositivo */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .envelope,
+      .transicao {
+        transition: none;
+      }
+
     }
 
   </style>
 
 </head>
 
+
 <body>
 
-  <main class="envelope">
+
+  <!-- ENVELOPE -->
+
+  <main class="envelope" id="envelope">
 
     <img
       src="ENVELOPE.png"
       alt="Envelope do convite de 15 anos da Luisa"
     >
 
-    <!-- Clique no selo para abrir o convite -->
-
     <a
       class="abrir"
       href="convite/"
+      id="abrirConvite"
       aria-label="Abrir convite"
     ></a>
 
   </main>
+
+
+  <!-- CAMADA DA TRANSIÇÃO -->
+
+  <div
+    class="transicao"
+    id="transicao"
+  ></div>
+
+
+  <script>
+
+    const botao = document.getElementById("abrirConvite");
+    const envelope = document.getElementById("envelope");
+    const transicao = document.getElementById("transicao");
+
+
+    botao.addEventListener("click", function(event) {
+
+      /*
+       Impede que o link abra imediatamente.
+       Primeiro fazemos a animação.
+      */
+
+      event.preventDefault();
+
+
+      /* Inicia a animação */
+
+      envelope.classList.add("abrindo");
+      transicao.classList.add("ativa");
+
+
+      /*
+       Espera 800 milissegundos
+       e depois abre o convite
+      */
+
+      setTimeout(function() {
+
+        window.location.href = "convite/";
+
+      }, 800);
+
+    });
+
+  </script>
+
 
 </body>
 
