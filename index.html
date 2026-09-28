@@ -13,7 +13,6 @@
 
   <style>
 
-    /* Remove margens padrão do navegador */
     * {
       box-sizing: border-box;
     }
@@ -24,124 +23,77 @@
       padding: 0;
       width: 100%;
       min-height: 100%;
-      background-color: #ffffff;
+      background: #001b4d;
     }
 
-    /* Área principal do convite */
-    .convite {
+    .envelope {
       position: relative;
 
-      /* Ocupa toda a largura no celular */
+      /* Preenche a largura no celular */
       width: 100%;
 
-      /* Limite para telas maiores */
+      /* Evita ficar exageradamente grande no computador */
       max-width: 700px;
 
-      /* Centraliza no computador */
       margin: 0 auto;
-
-      /* Evita pequeno espaço abaixo da imagem */
       line-height: 0;
     }
 
-    /* Imagem do convite */
-    .convite img {
+    .envelope img {
       display: block;
       width: 100%;
       height: auto;
-      margin: 0;
-      padding: 0;
     }
 
-    /* Áreas clicáveis invisíveis */
-    .botao {
+    /*
+       Área clicável sobre o selo e
+       "CLIQUE AQUI PARA ABRIR"
+    */
+    .abrir {
       position: absolute;
+
+      left: 31%;
+      top: 39%;
+
+      width: 38%;
+      height: 23%;
+
       display: block;
       z-index: 10;
 
-      /* Formato arredondado acompanhando os botões da arte */
-      border-radius: 999px;
+      border-radius: 50%;
 
-      /* Remove destaque azul ao tocar no celular */
+      cursor: pointer;
+
       -webkit-tap-highlight-color: transparent;
     }
 
-
     /*
-    ============================================
-    BOTÃO LOCALIZAÇÃO DA FESTA
-    ============================================
+       Pequeno efeito ao tocar/clicar
     */
-
-    .localizacao {
-      left: 29.2%;
-      top: 70.31%;
-      width: 52.6%;
-      height: 1.76%;
-    }
-
-
-    /*
-    ============================================
-    BOTÃO CONFIRMAR PRESENÇA
-    ============================================
-    */
-
-    .confirmacao {
-      left: 24.9%;
-      top: 82.18%;
-      width: 57%;
-      height: 1.56%;
+    .abrir:active {
+      transform: scale(0.97);
     }
 
   </style>
 
 </head>
 
-
 <body>
 
-  <main class="convite">
-
-    <!-- IMAGEM COMPLETA DO CONVITE -->
+  <main class="envelope">
 
     <img
-      src="CONVITE.png"
-      alt="Convite de 15 anos da Luisa"
+      src="ENVELOPE.png"
+      alt="Envelope do convite de 15 anos da Luisa"
     >
 
-
-    <!--
-    ============================================
-    LINK DA LOCALIZAÇÃO
-    ============================================
-
-    TROQUE SOMENTE O LINK ABAIXO
-    -->
+    <!-- Clique no selo para abrir o convite -->
 
     <a
-      class="botao localizacao"
-      href="https://www.google.com/maps/place/EVVA+CLUB/@-21.193557,-47.8123875,17z/data=!3m1!4b1!4m6!3m5!1s0x94b9bfc62b064e1f:0x93ece4f014d1ce0d!8m2!3d-21.193557!4d-47.8123875!16s%2Fg%2F11spxv8zp4?entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Abrir localização da festa"
-    ></a>
-
-
-    <!--
-    ============================================
-    LINK DA CONFIRMAÇÃO
-    ============================================
-
-    TROQUE SOMENTE O LINK ABAIXO
-    -->
-
-    <a
-      class="botao confirmacao"
-      href="https://api.whatsapp.com/send?phone=5516991700689&text=Confirmo%20minha%20presen%C3%A7a%20na%20festa%20de%20Luisa.%0ANome%3A"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Confirmar presença"
+      class="abrir"
+      href="convite/"
+      aria-label="Abrir convite"
     ></a>
 
   </main>
